@@ -1,9 +1,11 @@
 from django.shortcuts import render
 
+from .models import Todo
 
-# Create your views here.
+
 def list_todo(request):
-    return render(request, "list_todo.html", context={})
+    todos = Todo.objects.all()
+    return render(request, "list_todo.html", context={"todos": todos})
 
 
 def new_todo(request):
