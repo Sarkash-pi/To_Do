@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 
+from .forms import TodoForm
 from .models import Todo
 
 
@@ -9,11 +10,23 @@ def list_todo(request):
 
 
 def new_todo(request):
-    return render(request, "new_todo.html", context={})
+    form = TodoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect("todo:list-todo")
+
+    return render(request, "new_todo.html", context={"form": form})
 
 
 def update_todo(request, pk):
-    return render(request, "update_todo.html", context={})
+    todo = get_object_or_404(Todo, pk=pk)
+    form = TodoForm(request.POST or None, instance=todo)
+
+    if form.is_valid():
+        form.save()
+        return redirect("todo:list-todo")
+
+    return render(request, "update_todo.html", context={"form": form})
 
 
 def delete_todo(request, pk):
