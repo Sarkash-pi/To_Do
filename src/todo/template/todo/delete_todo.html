@@ -1,1 +1,7 @@
 <h2>delete</h2>
+
+<form method="POST">
+  {% csrf_token %}
+  <p>Are you sure you want delete?</p>
+  <button type="submit">Delete Todo</button>
+</form>
