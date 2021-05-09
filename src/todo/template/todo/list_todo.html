@@ -1,3 +1,5 @@
+{% extends "base.html" %} {% block content %}
+
 <h2>List</h2>
 
 {% for todo in todos %}
@@ -10,3 +12,5 @@
 {% empty %}
 <p>There are no record to show</p>
 {% endfor %}
+
+{% endblock content %}

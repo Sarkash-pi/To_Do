@@ -1,3 +1,5 @@
+{% extends "base.html" %} {% block content %}
+
 <h2>update</h2>
 
 <form method="post">
@@ -5,3 +7,5 @@
   {{ form.as_p }}
   <button type="submit">update todo</button>
 </form>
+
+{% endblock content %}
